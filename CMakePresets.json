@@ -1,0 +1,51 @@
+{
+    "version": 3,
+    "configurePresets": [
+        {
+            "name": "arm-ax615d",
+            "displayName": "ARM Axera 615D",
+            "binaryDir": "${sourceDir}/build_ax615d",
+            "toolchainFile": "${sourceDir}/toolchains/ax615d_uclibc_gcc830.cmake",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release",
+                "PLATFORM": "ax615d",
+                "CMAKE_INSTALL_PREFIX": "${sourceDir}/output/ax615d"
+            }
+        },
+        {
+            "name": "x86-local",
+            "displayName": "Local x86 Build",
+            "binaryDir": "${sourceDir}/build_x86",
+            "toolchainFile": "${sourceDir}/toolchains/x86_64_local.cmake",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug",
+                "PLATFORM": "x86",
+                "CMAKE_INSTALL_PREFIX": "${sourceDir}/output/x86"
+            }
+        }
+    ],
+    "buildPresets": [
+        { "name": "build-arm-ax615d", "configurePreset": "arm-ax615d" },
+        {
+            "name": "build-x86_t1",
+            "configurePreset": "x86-local",
+            "targets": ["jpeg_resize_v4"],
+            "jobs": 4
+        }
+    ],
+    "testPresets": [
+        {
+            "name": "run-x86-test",
+            "configurePreset": "x86-local",
+            "description": "本地 x86 运行测试图1",
+            "filter": {
+                "include": {
+                    "name": "test_.*"
+                }
+            },
+            "execution": {
+                "stopOnFailure": true
+            }
+        }
+    ]
+}
