@@ -1,5 +1,9 @@
 CompileFlags:
-    CompilationDatabase: . # Search build/ directory for compile_commands.json
+    CompilationDatabase: build_t41 # Search build/ directory for compile_commands.json
+    # Add:
+    #     - "--target=arm-linux-gnueabihf" # 使用标准的ARM目标
+    # Remove:
+    #     - "-target=arm-rel-linux-uclibcgnueabihf" # 移除无效的目标
 
 Diagnostics:
     UnusedIncludes: None
