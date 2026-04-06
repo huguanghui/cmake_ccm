@@ -12,4 +12,4 @@ all:
 
 clean:
 	@echo "clean"
-	@rm -rf output build_x86 build_ax615d
+	@rm -rf output build_x86 build_ax615d build_t41

@@ -13,6 +13,17 @@
             }
         },
         {
+            "name": "mips-t41",
+            "displayName": "MIPS T41NQ",
+            "binaryDir": "${sourceDir}/build_t41",
+            "toolchainFile": "${sourceDir}/toolchains/t41nq_uclibc_gcc720.cmake",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release",
+                "PLATFORM": "t41nq",
+                "CMAKE_INSTALL_PREFIX": "${sourceDir}/output/t41"
+            }
+        },
+        {
             "name": "x86-local",
             "displayName": "Local x86 Build",
             "binaryDir": "${sourceDir}/build_x86",
@@ -26,6 +37,7 @@
     ],
     "buildPresets": [
         { "name": "build-arm-ax615d", "configurePreset": "arm-ax615d" },
+        { "name": "build-mips-t41", "configurePreset": "mips-t41" },
         {
             "name": "build-x86_t1",
             "configurePreset": "x86-local",

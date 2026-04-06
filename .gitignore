@@ -1,3 +1,5 @@
 build_ax615d
 build_x86
 output
+build_t41
+compile_commands.json

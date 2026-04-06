@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.12)
 
-project(ax615d_bm2 VERSION 0.0.1)
+project(cmake_ccm VERSION 0.0.1)
 
 set(CMAKE_C_STANDARD 99)
 
@@ -25,14 +25,6 @@ set(CMAKE_C_FLAGS_RELEASE "-Os -DNDEBUG")
 set(CMAKE_CXX_FLAGS_RELEASE "-Os -DNDEBUG")
 
 string(TOLOWER "${CMAKE_BUILD_TYPE}" _build_type)
-
-if(EXISTS "${CMAKE_BINARY_DIR}/compile_commands.json")
-  execute_process(
-    COMMAND
-      ${CMAKE_COMMAND} -E create_symlink
-      "${CMAKE_BINARY_DIR}/compile_commands.json"
-      "${CMAKE_SOURCE_DIR}/compile_commands.json")
-endif()
 
 if(NOT WIN32)
   string(ASCII 27 Esc)
@@ -68,6 +60,9 @@ if(PLATFORM STREQUAL "x86")
 elseif(PLATFORM STREQUAL "ax615d")
   set(TURBOJPEG_INC_DIR "${CMAKE_SOURCE_DIR}/deps/ax615d/jpeg_turbo/include/")
   set(TURBOJPEG_LIB_DIR "${CMAKE_SOURCE_DIR}/deps/ax615d/jpeg_turbo/lib")
+elseif(PLATFORM STREQUAL "t41nq")
+  set(TURBOJPEG_INC_DIR "${CMAKE_SOURCE_DIR}/deps/t41nq/jpeg_turbo/include/")
+  set(TURBOJPEG_LIB_DIR "${CMAKE_SOURCE_DIR}/deps/t41nq/jpeg_turbo/lib")
 else()
   message(FATAL_ERROR "Unsupported platform: ${PLATFORM}")
 endif()
@@ -84,3 +79,11 @@ endif()
 include(TargetFunc)
 
 add_subdirectory(src)
+
+if(EXISTS "${CMAKE_BINARY_DIR}/compile_commands.json")
+  execute_process(
+    COMMAND
+      ${CMAKE_COMMAND} -E create_symlink
+      "${CMAKE_BINARY_DIR}/compile_commands.json"
+      "${CMAKE_SOURCE_DIR}/compile_commands.json")
+endif()
